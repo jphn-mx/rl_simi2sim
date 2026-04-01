@@ -1,0 +1,111 @@
+## lab
+policy_path: "policy/policy_lab_0401_2(p10d01)" # policy_lab_0317_2(p10d01).onnx
+model_type: "onnx"
+xml_path: "model/dog/dog_V1_description/urdf/scene_wl.xml"
+simulation_duration: 600.0
+simulation_dt: 0.002
+control_decimation: 10
+kps: [
+      10,10,10,
+      10,10,10,
+      10,10,10,
+      10,10,10,
+      ] # lab中action腿的顺序 
+# kps: [
+#       15,15,15,
+#       15,15,15,
+#       15,15,15,
+#       15,15,15,
+#       ]
+kds: [
+      0.1,0.1,0.1,
+      0.1,0.1,0.1,
+      0.1,0.1,0.1,
+      0.1,0.1,0.1
+      ]
+
+default_angles: [ 0.,0.,0.,0.,
+                  0.8,0.8,0.8,0.8,
+                  -1.5,-1.5,-1.5,-1.5
+                  ]
+
+ang_vel_scale: 0.2
+dof_pos_scale: 1.0
+dof_vel_scale: 0.05
+action_scale: 0.25
+cmd_scale: [1.0, 1.0, 1.0]
+num_actions: 12
+num_obs: 45
+num_history: 1
+simulate_type: 'lab'
+cmd_init: [0., 0, 0]
+obs_index_in_lab: ['YH2', 'YQ2', 'ZH2', 'ZQ2', 'YH3', 'YQ3', 'ZH3', 'ZQ3', 'YH4', 'YQ4', 'ZH4', 'ZQ4']
+obs_index_in_mj: ["ZQ2", "ZQ3", "ZQ4", "ZH2", "ZH3", "ZH4","YH2","YH3","YH4","YQ2","YQ3","YQ4"]
+action_index_in_lab: ['YH2', 'YQ2', 'ZH2', 'ZQ2', 'YH3', 'YQ3', 'ZH3', 'ZQ3', 'YH4', 'YQ4', 'ZH4', 'ZQ4']
+action_index_in_mj: ["ZQ2", "YQ2", "ZH2","YH2","ZQ3", "YQ3", "ZH3","YH3","ZQ4", "YQ4", "ZH4","YH4"]
+
+obs_index: ['base_ang_vel','projected_gravity','velocity_commands','joint_pos_rel','joint_vel_rel','last_action']
+
+# ##gym
+# policy_path: "policy/policy_gym_0401_2(p10d02)_40.pt" # "policy/policy_gym_0319_1_p10d01.onnx"
+# model_type: "jit"
+# xml_path: "model/dog/dog_V1_description/urdf/scene_wl.xml"
+# simulation_duration: 600.0
+# simulation_dt: 0.005
+# control_decimation: 4
+# # kps: [
+# #       10,10,10,
+# #       10,10,10,
+# #       10,10,10,
+# #       10,10,10,
+# #       ]
+# kps: [
+#       10,10,10,
+#       10,10,10,
+#       10,10,10,
+#       10,10,10,
+#       ] # gym中action腿的顺序 
+# kds: [
+#       0.1,0.1,0.1,
+#       0.1,0.1,0.1,
+#       0.1,0.1,0.1,
+#       0.1,0.1,0.1,
+#       ]
+# # kds: [
+# #       0.2,0.2,0.2,
+# #       0.2,0.2,0.2,
+# #       0.2,0.2,0.2,
+# #       0.2,0.2,0.2,
+# #       ]
+# # kds: [
+# #       0.125,0.125,0.125,
+# #       0.125,0.125,0.125,
+# #       0.125,0.125,0.125,
+# #       0.125,0.125,0.125
+# #       ]
+
+# default_angles: [ 0.,0.8,-1.5,
+#                   0.,0.8,-1.5,
+#                   0.,0.8,-1.5,
+#                   0.,0.8,-1.5,
+#                   ]
+
+# ang_vel_scale: 0.25
+# dof_pos_scale: 1.0
+# dof_vel_scale: 0.05
+# action_scale: 0.25
+# cmd_scale: [2.0, 2.0, 0.25]
+# num_actions: 12
+# num_obs: 45
+# num_history: 1
+
+# simulate_type: 'gym'
+# cmd_init: [0, 0, 0.]
+# obs_index_in_gym: ['YH2', 'YH3', 'YH4', 'YQ2', 'YQ3', 'YQ4', 'ZH2', 'ZH3', 'ZH4', 'ZQ2', 'ZQ3', 'ZQ4']
+# # obs_index_in_mj: ["ZQ2", "ZQ3", "ZQ4", "ZH2", "ZH3", "ZH4","YQ2","YQ3","YQ4","YH2","YH3","YH4"]
+# obs_index_in_mj: ["ZQ2", "ZQ3", "ZQ4", "ZH2", "ZH3", "ZH4","YH2","YH3","YH4","YQ2","YQ3","YQ4"]
+# action_index_in_gym: ['YH2', 'YH3', 'YH4', 'YQ2', 'YQ3', 'YQ4', 'ZH2', 'ZH3', 'ZH4', 'ZQ2', 'ZQ3', 'ZQ4']
+# action_index_in_mj: ["ZQ2", "YQ2", "ZH2","YH2","ZQ3", "YQ3", "ZH3","YH3","ZQ4", "YQ4", "ZH4","YH4"]
+
+# obs_index: ['velocity_commands','base_ang_vel','projected_gravity','joint_pos_rel','joint_vel_rel','last_action']
+

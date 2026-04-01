@@ -1,0 +1,208 @@
+<mujoco model="dog">
+  <compiler angle="radian" meshdir="../meshes/"/>
+
+  <asset>
+    <mesh name="base_link" file="base_link.STL"/>
+    <mesh name="Link_ZQ1" file="Link_ZQ1.STL"/>
+    <mesh name="Link_ZQ2" file="Link_ZQ2.STL"/>
+    <mesh name="Link_ZQ3" file="Link_ZQ3.STL"/>
+    <mesh name="Link_ZQ4" file="Link_ZQ4.STL"/>
+    <mesh name="Link_ZQ5" file="Link_ZQ5.STL"/>
+    <mesh name="Link_ZH1" file="Link_ZH1.STL"/>
+    <mesh name="Link_ZH2" file="Link_ZH2.STL"/>
+    <mesh name="Link_ZH3" file="Link_ZH3.STL"/>
+    <mesh name="Link_ZH4" file="Link_ZH4.STL"/>
+    <mesh name="Link_ZH5" file="Link_ZH5.STL"/>
+    <mesh name="Link_YH1" file="Link_YH1.STL"/>
+    <mesh name="Link_YH2" file="Link_YH2.STL"/>
+    <mesh name="Link_YH3" file="Link_YH3.STL"/>
+    <mesh name="Link_YH4" file="Link_YH4.STL"/>
+    <mesh name="Link_YH5" file="Link_YH5.STL"/>
+    <mesh name="Link_YQ1" file="Link_YQ1.STL"/>
+    <mesh name="Link_YQ2" file="Link_YQ2.STL"/>
+    <mesh name="Link_YQ3" file="Link_YQ3.STL"/>
+    <mesh name="Link_YQ4" file="Link_YQ4.STL"/>
+    <mesh name="Link_YQ5" file="Link_YQ5.STL"/>
+  </asset>
+
+  <!-- d.qpos index ZQ ZH YH YQ-->
+  <worldbody>
+    <body name="base_link" pos="0 0 0.6">
+      <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="base_link"/>
+      <geom type="mesh" rgba="1 1 1 1" mesh="base_link"/>
+      <joint name="floating_base_joint" type="free" limited="false" actuatorfrclimited="false"/>
+      <geom pos="0.113 0.044 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZQ1"/>
+      <geom pos="0.113 0.044 0" type="mesh" rgba="1 1 1 1" mesh="Link_ZQ1"/>
+      <geom pos="-0.113 0.044 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZH1"/>
+      <geom pos="-0.113 0.044 0" type="mesh" rgba="1 1 1 1" mesh="Link_ZH1"/>
+      <geom pos="-0.113 -0.044 0" quat="6.68662e-08 0 0 -1" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YH1"/>
+      <geom pos="-0.113 -0.044 0" quat="6.68662e-08 0 0 -1" type="mesh" rgba="1 1 1 1" mesh="Link_YH1"/>
+      <geom pos="0.113 -0.044 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YQ1"/>
+      <geom pos="0.113 -0.044 0" type="mesh" rgba="1 1 1 1" mesh="Link_YQ1"/>
+      <site name="imu" pos="-0.0 0 0." />
+      <body name="Link_ZQ2" pos="0.113 0.044 -0.04">
+        <inertial pos="0.0653815 -0.00367484 3.74856e-08" quat="0.500863 0.500854 0.499135 0.499145" mass="0.158887" diaginertia="9.05634e-05 7.88558e-05 6.94079e-05"/>
+        <joint name="joint_ZQ2" pos="0 0 0" axis="1 0 0" range="-1.04 1.04"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZQ2"/>
+        <geom type="mesh" rgba="1 1 1 1" mesh="Link_ZQ2"/>
+        <body name="Link_ZQ3" pos="0.067 0 0">
+          <inertial pos="-9.66843e-05 0.063763 -0.0125912" quat="0.707376 1.01076e-05 -1.01153e-05 0.706838" mass="0.328525" diaginertia="0.000433051 0.000357997 0.000133948"/>
+          <joint name="joint_ZQ3" pos="0 0 0" axis="0 1 0" range="-2.6 2.6"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZQ3"/>
+          <geom size="0.03 0.025" pos="0 0.07 0" quat="0.707388 0.706825 0 0" type="cylinder" rgba="1 1 1 1"/>
+          <geom size="0.01 0.005 0.06" pos="0 0.09 -0.075" type="box" rgba="1 1 1 1"/>
+          <body name="Link_ZQ4" pos="0 0.0885 -0.15">
+            <inertial pos="-1.46154e-08 3.41698e-07 -0.105906" quat="1 0 0 -9.95816e-05" mass="0.0802946" diaginertia="0.000230871 0.000229843 9.65894e-06"/>
+            <joint name="joint_ZQ4" pos="0 0 0" axis="0 1 0" range="-2.5 -0.6"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZQ4"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="Link_ZQ4"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZQ5"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" rgba="1 1 1 1" mesh="Link_ZQ5"/>
+          </body>
+        </body>
+      </body>
+      <body name="Link_ZH2" pos="-0.113 0.044 -0.04">
+        <inertial pos="-0.0653815 -0.00367485 -3.67134e-08" quat="0.499145 0.499135 0.500854 0.500863" mass="0.158887" diaginertia="9.05634e-05 7.88558e-05 6.94079e-05"/>
+        <joint name="joint_ZH2" pos="0 0 0" axis="1 0 0" range="-1.04 1.04"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZH2"/>
+        <geom type="mesh" rgba="1 1 1 1" mesh="Link_ZH2"/>
+        <body name="Link_ZH3" pos="-0.067 0 0">
+          <inertial pos="-0.000124472 0.063763 -0.0125913" quat="0.707154 1.00359e-05 -1.00372e-05 0.707059" mass="0.328525" diaginertia="0.000433051 0.000357997 0.000133948"/>
+          <joint name="joint_ZH3" pos="0 0 0" axis="0 1 0" range="-2.6 2.6"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZH3"/>
+          <geom size="0.03 0.025" pos="0 0.07 0" quat="0.707388 0.706825 0 0" type="cylinder" rgba="1 1 1 1"/>
+          <geom size="0.01 0.005 0.06" pos="0 0.09 -0.075" type="box" rgba="1 1 1 1"/>
+          <body name="Link_ZH4" pos="0 0.0885 -0.15">
+            <inertial pos="-1.46154e-08 3.41698e-07 -0.105906" quat="1 0 0 -9.95816e-05" mass="0.0802946" diaginertia="0.000230871 0.000229843 9.65894e-06"/>
+            <joint name="joint_ZH4" pos="0 0 0" axis="0 1 0" range="-2.5 -0.6"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZH4"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="Link_ZH4"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_ZH5"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" rgba="1 1 1 1" mesh="Link_ZH5"/>
+          </body>
+        </body>
+      </body>
+      <body name="Link_YH2" pos="-0.113 -0.044 -0.04" quat="4.72816e-08 0.707107 4.72816e-08 -0.707107">
+        <inertial pos="-3.67135e-08 -0.00367484 0.0653815" quat="0.707106 0.00120872 -0.00122161 0.707106" mass="0.158887" diaginertia="9.05634e-05 7.88558e-05 6.94079e-05"/>
+        <joint name="joint_YH2" pos="0 0 0" axis="0 0 -1" range="-1.04 1.04"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YH2"/>
+        <geom type="mesh" rgba="1 1 1 1" mesh="Link_YH2"/>
+        <body name="Link_YH3" pos="0 0 0.067" quat="0.5 -0.5 -0.5 -0.5">
+          <inertial pos="0.000123999 0.0125923 0.0637628" quat="0.499972 0.49996 -0.500028 0.50004" mass="0.328527" diaginertia="0.000433079 0.000358025 0.000133948"/>
+          <joint name="joint_YH3" pos="0 0 0" axis="0 0 -1" range="-2.6 2.6"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YH3"/>
+          <geom size="0.03 0.025" pos="0 0 0.07" type="cylinder" rgba="1 1 1 1"/>
+          <geom size="0.01 0.005 0.06" pos="0 0.075 0.09" quat="0.707388 0.706825 0 0" type="box" rgba="1 1 1 1"/>
+          <body name="Link_YH4" pos="0 0.15 0.0885" quat="0 0 -0.707107 0.707107">
+            <inertial pos="-1.46154e-08 3.41698e-07 -0.105906" quat="1 0 0 -9.95816e-05" mass="0.0802946" diaginertia="0.000230871 0.000229843 9.65894e-06"/>
+            <joint name="joint_YH4" pos="0 0 0" axis="0 1 0" range="-2.5 -0.6"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YH4"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="Link_YH4"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YH5"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" rgba="1 1 1 1" mesh="Link_YH5"/>
+          </body>
+        </body>
+      </body>
+      <body name="Link_YQ2" pos="0.113 -0.044 -0.04">
+        <inertial pos="0.0653815 0.00367485 -3.67134e-08" quat="0.499135 0.499145 0.500863 0.500854" mass="0.158887" diaginertia="9.05634e-05 7.88558e-05 6.94079e-05"/>
+        <joint name="joint_YQ2" pos="0 0 0" axis="1 0 0" range="-1.04 1.04"/>
+        <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YQ2"/>
+        <geom type="mesh" rgba="1 1 1 1" mesh="Link_YQ2"/>
+        <body name="Link_YQ3" pos="0.067 0 0">
+          <inertial pos="-9.59681e-05 -0.0637628 -0.0125923" quat="0.706837 8.38727e-06 -8.38088e-06 0.707376" mass="0.328527" diaginertia="0.00043308 0.000358025 0.000133948"/>
+          <joint name="joint_YQ3" pos="0 0 0" axis="0 1 0" range="-2.6 2.6"/>
+          <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YQ3"/>
+          <geom size="0.03 0.025" pos="0 -0.07 0" quat="0.707388 0.706825 0 0" type="cylinder" rgba="1 1 1 1"/>
+          <geom size="0.01 0.005 0.06" pos="0 -0.09 -0.075" type="box" rgba="1 1 1 1"/>
+          <body name="Link_YQ4" pos="0 -0.0885 -0.15">
+            <inertial pos="-1.46154e-08 3.41698e-07 -0.105906" quat="1 0 0 -9.95816e-05" mass="0.0802946" diaginertia="0.000230871 0.000229843 9.65894e-06"/>
+            <joint name="joint_YQ4" pos="0 0 0" axis="0 1 0" range="-2.5 -0.6"/>
+            <geom type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YQ4"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="Link_YQ4"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" contype="0" conaffinity="0" group="1" density="0" rgba="1 1 1 1" mesh="Link_YQ5"/>
+            <geom pos="0 0 -0.155" quat="1 0 0 0" type="mesh" rgba="1 1 1 1" mesh="Link_YQ5"/>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <!-- d.ctrl index -->
+  <actuator>
+    <position joint="joint_ZQ2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/>
+    <position joint="joint_YQ2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/>
+    <position joint="joint_ZH2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/> 
+    <position joint="joint_YH2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/>
+    <position joint="joint_ZQ3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_YQ3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_ZH3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_YH3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_ZQ4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+    <position joint="joint_YQ4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+    <position joint="joint_ZH4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+    <position joint="joint_YH4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+  </actuator>
+  <!-- <actuator>
+    <position joint="joint_ZQ2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/>
+    <position joint="joint_YQ2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/>
+    <position joint="joint_ZH2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/> 
+    <position joint="joint_YH2" kp="5.0" kv="0.1" ctrlrange="-1.04 1.04"/>
+    <position joint="joint_ZQ3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_YQ3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_ZH3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_YH3" kp="5.0" kv="0.1" ctrlrange="-2.6 2.6"/>
+    <position joint="joint_ZQ4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+    <position joint="joint_YQ4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+    <position joint="joint_ZH4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+    <position joint="joint_YH4" kp="5.0" kv="0.1" ctrlrange="-2.5 -0.6"/>
+  </actuator> -->
+
+  <sensor>
+    <jointpos name="FR_hip_pos" joint="joint_YQ2" />
+    <jointpos name="FR_thigh_pos" joint="joint_YQ3" />
+    <jointpos name="FR_calf_pos" joint="joint_YQ4" />
+    <jointpos name="FL_hip_pos" joint="joint_ZQ2" />
+    <jointpos name="FL_thigh_pos" joint="joint_ZQ3" />
+    <jointpos name="FL_calf_pos" joint="joint_ZQ4" />
+    <jointpos name="RR_hip_pos" joint="joint_YH2" />
+    <jointpos name="RR_thigh_pos" joint="joint_YH3" />
+    <jointpos name="RR_calf_pos" joint="joint_YH4" />
+    <jointpos name="RL_hip_pos" joint="joint_ZH2" />
+    <jointpos name="RL_thigh_pos" joint="joint_ZH3" />
+    <jointpos name="RL_calf_pos" joint="joint_ZH4" />
+
+    <jointvel name="FR_hip_vel" joint="joint_YQ2" />
+    <jointvel name="FR_thigh_vel" joint="joint_YQ3" />
+    <jointvel name="FR_calf_vel" joint="joint_YQ4" />
+    <jointvel name="FL_hip_vel" joint="joint_ZQ2" />
+    <jointvel name="FL_thigh_vel" joint="joint_ZQ3" />
+    <jointvel name="FL_calf_vel" joint="joint_ZQ4" />
+    <jointvel name="RR_hip_vel" joint="joint_YH2" />
+    <jointvel name="RR_thigh_vel" joint="joint_YH3" />
+    <jointvel name="RR_calf_vel" joint="joint_YH4" />
+    <jointvel name="RL_hip_vel" joint="joint_ZH2" />
+    <jointvel name="RL_thigh_vel" joint="joint_ZH3" />
+    <jointvel name="RL_calf_vel" joint="joint_ZH4" />
+
+    <jointactuatorfrc name="FR_hip_torque" joint="joint_YQ2" noise="0.01" />
+    <jointactuatorfrc name="FR_thigh_torque" joint="joint_YQ3" noise="0.01" />
+    <jointactuatorfrc name="FR_calf_torque" joint="joint_YQ4" noise="0.01" />
+    <jointactuatorfrc name="FL_hip_torque" joint="joint_ZQ2" noise="0.01" />
+    <jointactuatorfrc name="FL_thigh_torque" joint="joint_ZQ3" noise="0.01" />
+    <jointactuatorfrc name="FL_calf_torque" joint="joint_ZQ4" noise="0.01" />
+    <jointactuatorfrc name="RR_hip_torque" joint="joint_YH2" noise="0.01" />
+    <jointactuatorfrc name="RR_thigh_torque" joint="joint_YH3" noise="0.01" />
+    <jointactuatorfrc name="RR_calf_torque" joint="joint_YH4" noise="0.01" />
+    <jointactuatorfrc name="RL_hip_torque" joint="joint_ZH2" noise="0.01" />
+    <jointactuatorfrc name="RL_thigh_torque" joint="joint_ZH3" noise="0.01" />
+    <jointactuatorfrc name="RL_calf_torque" joint="joint_ZH4" noise="0.01" />
+
+    <framequat name="imu_quat" objtype="site" objname="imu" />
+    <gyro name="imu_gyro" site="imu" />
+    <accelerometer name="imu_acc" site="imu" />
+    
+    <framepos name="frame_pos" objtype="site" objname="imu" />
+    <framelinvel name="frame_vel" objtype="site" objname="imu" />
+  </sensor>
+
+</mujoco>
