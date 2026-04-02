@@ -1,2 +1,2 @@
 # Useage
-python deploy_mujoco_gamepad.py
+python deploy_sim.py
