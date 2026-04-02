@@ -1,0 +1,47 @@
+##gym
+policy_path: "policy/policy_gym_0331_5(p10d02).pt" # "policy/policy_gym_0319_1_p10d01.onnx"
+model_type: "jit"
+xml_path: "model/dog/dog_V2_description/urdf/scene.xml"
+simulation_duration: 600.0
+simulation_dt: 0.002
+control_decimation: 10
+kps: [
+      10,10,10,
+      10,10,10,
+      10,10,10,
+      10,10,10,
+      ] # gym中action腿的顺序 
+kds: [
+      0.1,0.1,0.1,
+      0.1,0.1,0.1,
+      0.1,0.1,0.1,
+      0.1,0.1,0.1,
+      ]
+
+default_angles: [ 0.,0.8,-1.5,
+                  0.,0.8,-1.5,
+                  0.,0.8,-1.5,
+                  0.,0.8,-1.5,
+                  ]
+
+ang_vel_scale: 0.25
+dof_pos_scale: 1.0
+dof_vel_scale: 0.05
+action_scale: 0.25
+cmd_scale: [2.0, 2.0, 0.25]
+num_actions: 12
+num_obs: 45
+num_history: 1
+
+model: 'kaiwu'
+simulate_type: 'gym'
+cmd_init: [0, 0, 0.]
+obs_index_in_gym: ['YH2', 'YH3', 'YH4', 'YQ2', 'YQ3', 'YQ4', 'ZH2', 'ZH3', 'ZH4', 'ZQ2', 'ZQ3', 'ZQ4']
+obs_index_in_mj: ["ZQ2", "ZQ3", "ZQ4", "ZH2", "ZH3", "ZH4","YQ2","YQ3","YQ4","YH2","YH3","YH4"]
+# obs_index_in_mj: ["ZQ2", "ZQ3", "ZQ4", "ZH2", "ZH3", "ZH4","YH2","YH3","YH4","YQ2","YQ3","YQ4"]
+action_index_in_gym: ['YH2', 'YH3', 'YH4', 'YQ2', 'YQ3', 'YQ4', 'ZH2', 'ZH3', 'ZH4', 'ZQ2', 'ZQ3', 'ZQ4']
+action_index_in_mj: ["ZQ2", "YQ2", "ZH2","YH2","ZQ3", "YQ3", "ZH3","YH3","ZQ4", "YQ4", "ZH4","YH4"]
+
+obs_index: ['velocity_commands','base_ang_vel','projected_gravity','joint_pos_rel','joint_vel_rel','last_action']
+# obs_index: ['base_ang_vel','projected_gravity','velocity_commands','joint_pos_rel','joint_vel_rel','last_action']
+

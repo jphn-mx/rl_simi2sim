@@ -13,6 +13,19 @@ from utils.math_utils import get_gravity_orientation, pd_control
 import sys
 import termios
 import tty
+def normalize_policy_output(policy_output):
+    if isinstance(policy_output, torch.Tensor):
+        return policy_output
+    if isinstance(policy_output, np.ndarray):
+        return torch.from_numpy(policy_output)
+    if isinstance(policy_output, (list, tuple)):
+        for item in policy_output:
+            if isinstance(item, torch.Tensor):
+                return item
+            if isinstance(item, np.ndarray):
+                return torch.from_numpy(item)
+        raise TypeError(f"Policy output sequence does not contain a tensor or ndarray: {type(policy_output)}")
+    raise TypeError(f"Unsupported policy output type: {type(policy_output)}")
 
 class obs_history_lab:
     #term
@@ -61,19 +74,6 @@ class obs_history_lab:
         
         return np.array(total_obs)
 
-class obs_history_himlab:
-    #time
-    def __init__(self,num_obs,hist_len):
-        self.hist_len = hist_len
-        self.num_obs = num_obs
-        self.total_obs = [0.]*self.num_obs*self.hist_len
-    
-    def update(self,new_obs):
-        self.total_obs[:-self.num_obs] = self.total_obs[self.num_obs:]
-        self.total_obs[-self.num_obs:] = new_obs
-
-        return np.array(self.total_obs)
-
 class obs_history_gym:
     #time
     def __init__(self,num_obs,hist_len):
@@ -86,7 +86,6 @@ class obs_history_gym:
         self.total_obs[:self.num_obs] = new_obs
 
         return np.array(self.total_obs)
-
 
 
 import fcntl
@@ -196,7 +195,6 @@ if __name__ == "__main__":
     # define context variables
     if simulate_type == 'lab':
         obs_hist = obs_history_lab(num_obs,num_history,obs_index) #lab
-        # obs_hist = obs_history_himlab(num_obs,num_history) #himlab
     else:
         obs_hist = obs_history_gym(num_obs,num_history) # gym
     actions = np.zeros(num_actions, dtype=np.float32)
@@ -254,10 +252,6 @@ if __name__ == "__main__":
             if reset_requested:
                 # 重置机器人状态
                 
-                # if simulate_type == 'lab':
-                #     d.qpos[7:] = default_angles[lab2mj]
-                # else:
-                #     d.qpos[7:] = default_angles[gym2mj]
                 d.qvel[:] = initial_qvel
                 d.qpos[:7] = initial_qpos[:7]
                 # 重置速度命令
@@ -344,20 +338,6 @@ if __name__ == "__main__":
                         obs.append(dqj)
 
                 obs = np.concatenate(obs,axis=0)
-                # if simulate_type == 'lab':
-                #     obs[:3] = omega
-                #     obs[3:6] = gravity_orientation
-                #     obs[6:9] = cmd * cmd_scale
-                #     obs[9:9 + num_actions] = qj
-                #     obs[9 + num_actions:9 + 2 * num_actions] = dqj
-                #     obs[9 + 2 * num_actions:9 + 3 * num_actions] = actions
-                # else:
-                #     obs[:3] = cmd * cmd_scale
-                #     obs[3:6] = omega
-                #     obs[6:9] = gravity_orientation
-                #     obs[9:9 + num_actions] = qj
-                #     obs[9 + num_actions:9 + 2 * num_actions] = dqj
-                #     obs[9 + 2 * num_actions:9 + 3 * num_actions] = actions
                 
                 total_obs = obs_hist.update(obs)
                 # print(total_obs)
@@ -369,7 +349,9 @@ if __name__ == "__main__":
                     obs_tensor = torch.clip(torch.from_numpy(total_obs).unsqueeze(0),-100.0,100.0)
                 # policy inference
                 if model_type == "jit":
-                    actions = torch.clip(policy(obs_tensor.float()),-100.0,100.0).detach().numpy().squeeze()
+                    # actions = torch.clip(policy(obs_tensor.float()),-100.0,100.0).detach().numpy().squeeze()
+                    policy_output = normalize_policy_output(policy(obs_tensor.float()))
+                    actions = torch.clip(policy_output,-100.0,100.0).detach().cpu().numpy().squeeze()
                 elif model_type == "onnx":
                     # ONNX 推理
                     input_name = policy.get_inputs()[0].name
