@@ -1,1 +1,2 @@
-### python deploy_mujoco_gamepad.py
+# Useage
+python deploy_mujoco_gamepad.py
